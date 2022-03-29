@@ -1,0 +1,52 @@
+Arguments: 
+  D:\node\node.exe D:\node\node_modules\yarn\bin\yarn.js add antd
+
+PATH: 
+  D:\cmder\vendor\git-for-windows\mingw64\bin;D:\cmder\vendor\git-for-windows\usr\bin;C:\Users\admin\bin;C:\Python310\Scripts;C:\Python310;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\ProgramData\chocolatey\bin;D:\nvm;D:\node;D:\cmder;C:\Users\admin\AppData\Local\Microsoft\WindowsApps;D:\nvm;D:\node;C:\Users\admin\AppData\Local\Yarn\bin;D:\test\dva-quickstart\node_modules\.bin
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.14.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\admin\AppData\Local\Yarn\Cache\v6\npm-anymatch-3.1.2-c0557c096af32f106198f4f4e2a383537e378716-integrity\node_modules\anymatch\index.d.ts' -> 'D:\test\dva-quickstart\node_modules\watchpack\node_modules\anymatch\index.d.ts'
+
+npm manifest: 
+  {
+    "private": true,
+    "scripts": {
+      "start": "roadhog server",
+      "build": "roadhog build",
+      "lint": "eslint --ext .js src test",
+      "precommit": "npm run lint"
+    },
+    "dependencies": {
+      "dva": "^2.4.1",
+      "history": "^5.3.0",
+      "react": "^16.2.0",
+      "react-dom": "^16.2.0"
+    },
+    "devDependencies": {
+      "babel-plugin-dva-hmr": "^0.3.2",
+      "eslint": "^4.14.0",
+      "eslint-config-umi": "^0.1.1",
+      "eslint-plugin-flowtype": "^2.34.1",
+      "eslint-plugin-import": "^2.6.0",
+      "eslint-plugin-jsx-a11y": "^5.1.1",
+      "eslint-plugin-react": "^7.1.0",
+      "husky": "^0.12.0",
+      "redbox-react": "^1.4.3",
+      "roadhog": "^2.5.0-beta.4"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
