@@ -41,7 +41,7 @@ export default {
       yield put({ type: 'query', payload: {data} });
     }
   },
-  subscriptions: {
+  subscriptions: {//切换时获取数据dd
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
         if (pathname === '/products') {
