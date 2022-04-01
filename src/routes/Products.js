@@ -6,7 +6,7 @@ import {Button,Modal,Input} from "antd";
 
 
 
-const Products = ({ dispatch, products }) => {
+const Products = ({ dispatch, state }) => {
   function handleDelete(id) {
     dispatch({
       type: 'products/delete',
@@ -16,6 +16,10 @@ const Products = ({ dispatch, products }) => {
   function handleAdd(content) {
     dispatch({
       type: 'products/add',
+      payload: content,
+    });
+    dispatch({
+      type: 'products/query',
       payload: content,
     });
   }
@@ -34,7 +38,7 @@ const Products = ({ dispatch, products }) => {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    console.log(content);
+    console.log(state);
     handleAdd(content);
 
   };
@@ -49,7 +53,7 @@ const Products = ({ dispatch, products }) => {
       <Modal title="添加数据" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <p><Input placeholder="输入添加内容"  onChange={inputChange} /></p>
       </Modal>
-      <ProductList onDelete={handleDelete} products={products} />
+      <ProductList onDelete={handleDelete} products={state} />
     </div>
   );
 };

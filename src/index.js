@@ -5,12 +5,13 @@ import { createBrowserHistory } from "history";
 // 1. Initialize
 const app = dva({
   history: createBrowserHistory(),
-  initialState: {
-         products: [
-         { name: 'dva', id: 1 },
-         { name: 'antd', id: 2 },
-       ],
-     },
+  initialState: localStorage.getItem('products') ? JSON.parse(localStorage.getItem('state')) : undefined,
+  onError(e, dispatch){
+    console.log(e.message);
+  },
+  onStateChange(state) {
+    console.log(state)
+  }
 });
 
 // 2. Plugins

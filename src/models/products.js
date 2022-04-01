@@ -1,4 +1,4 @@
-import  * as services from '../services/products';
+import  {query} from '../services/products';
 
 export default {
   namespace: 'products',
@@ -9,19 +9,36 @@ export default {
       return state.filter(item => item.id !== id);
     },
     'add'(state, { payload: content }) {
+      console.log(state);
       let temp= JSON.parse(JSON.stringify(state));//深拷贝
-      console.log(temp);
-      temp.push({id:33,name:content});
-      console.log(temp);
-      return  temp;
+      const id=Date.parse(new Date());
+      temp = 'undefined' ? [] : temp;
+
+      temp.push({name:content,id:id});
+       state=temp;
+      return  state;
+    },
+    'query'(state, { payload:{data}  }) {
+     if (state ==='underfined')
+     {
+       return  state;
+     }else {
+       console.log(data);
+       return null;
+     }
+
+    },
+    'getDate'(state, { payload: id }) {
+      console.log(id);
     },
 
   },
   effects: {
-    *'fetch'(state) {
-      const { data } = yield services.query();
-      console.log(data);
-      return state;
+    *'fetch'({payload},{select,put,call}) {
+      const condition = yield select(state => state.products);
+     // console.log('日你妈'+JSON.stringify(condition));
+     const data= yield call(query, condition );
+      yield put({ type: 'query', payload: {data} });
     }
   },
   subscriptions: {
@@ -29,7 +46,7 @@ export default {
       history.listen(({ pathname }) => {
         if (pathname === '/products') {
           dispatch({
-            type: '/fetch',
+            type: 'fetch',
           });
         }
       });
