@@ -24,7 +24,7 @@ export default {
       return state;
     }
   },
-  subscriptions: {
+  subscriptions: {//切换时获取数据
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
         if (pathname === '/products') {
