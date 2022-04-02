@@ -2,18 +2,25 @@ import dva from 'dva';
 import './index.css';
 import { createBrowserHistory } from "history";
 
+import {object} from "prop-types";
+const name=localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : undefined;
+
 // 1. Initialize
 const app = dva({
   history: createBrowserHistory(),
-  initialState: localStorage.getItem('products') ? JSON.parse(localStorage.getItem('state')) : undefined,
+
+  initialState: {
+    products: name
+  },
   onError(e, dispatch){
     console.log(e.message);
   },
   onStateChange(state) {
-    console.log(state)
+     localStorage.setItem('products',JSON.stringify(state.products));
+
+
   }
 });
-
 // 2. Plugins
 // app.use({});
 

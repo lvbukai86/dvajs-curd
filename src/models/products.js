@@ -1,4 +1,4 @@
-import  {query} from '../services/products';
+
 
 export default {
   namespace: 'products',
@@ -9,39 +9,32 @@ export default {
       return state.filter(item => item.id !== id);
     },
     'add'(state, { payload: content }) {
-      console.log(state);
       let temp= JSON.parse(JSON.stringify(state));//深拷贝
+
       const id=Date.parse(new Date());
-      temp = 'undefined' ? [] : temp;
-
       temp.push({name:content,id:id});
+      console.log(typeof temp)
        state=temp;
-      return  state;
+      return  temp;
     },
-    'query'(state, { payload:{data}  }) {
-     if (state ==='underfined')
-     {
-       return  state;
-     }else {
-       console.log(data);
-       return null;
-     }
+   /* 'query'(state, { payload:{data}  }) {
+      console.log('查询');
+      return '2';
 
-    },
+    },*/
     'getDate'(state, { payload: id }) {
       console.log(id);
     },
 
   },
   effects: {
-    *'fetch'({payload},{select,put,call}) {
-      const condition = yield select(state => state.products);
-     // console.log('日你妈'+JSON.stringify(condition));
-     const data= yield call(query, condition );
-      yield put({ type: 'query', payload: {data} });
-    }
+ /*   *'fetch'({payload},{put,call}) {
+
+     const data= yield call(function (){}, payload );
+      yield put({ type: 'query'});
+    }*/
   },
-  subscriptions: {//切换时获取数据dd
+/*  subscriptions: {//切换时获取数据dd
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
         if (pathname === '/products') {
@@ -51,5 +44,5 @@ export default {
         }
       });
     },
-  },
+  },*/
 };

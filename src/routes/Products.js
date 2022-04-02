@@ -6,7 +6,7 @@ import {Button,Modal,Input} from "antd";
 
 
 
-const Products = ({ dispatch, state }) => {
+const Products = ({ dispatch, products }) => {
   function handleDelete(id) {
     dispatch({
       type: 'products/delete',
@@ -38,7 +38,6 @@ const Products = ({ dispatch, state }) => {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    console.log(state);
     handleAdd(content);
 
   };
@@ -53,12 +52,15 @@ const Products = ({ dispatch, state }) => {
       <Modal title="添加数据" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <p><Input placeholder="输入添加内容"  onChange={inputChange} /></p>
       </Modal>
-      <ProductList onDelete={handleDelete} products={state} />
+      <ProductList onDelete={handleDelete} products={products} />
     </div>
   );
 };
 
 // export default Products;
-export default connect(({ products }) => ({
-  products,
-}))(Products);
+function mapStateToProps(state, ownProps) {
+  return {
+  products: state.products,
+  };
+}
+export default connect(mapStateToProps)(Products);
