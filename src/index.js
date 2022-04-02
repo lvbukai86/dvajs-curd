@@ -1,8 +1,6 @@
 import dva from 'dva';
 import './index.css';
 import { createBrowserHistory } from "history";
-
-import {object} from "prop-types";
 const name=localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : undefined;
 
 // 1. Initialize
