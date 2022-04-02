@@ -4,14 +4,14 @@ import { Table, Popconfirm, Button } from 'antd';
 
 const ProductList = ({ onDelete, products }) => {
   const columns = [{
-    title: 'Name',
+    title: '姓名',
     dataIndex: 'name',
   }, {
-    title: 'Actions',
+    title: '操作',
     render: (text, record) => {
       return (
         <Popconfirm title="Delete?" onConfirm={() => onDelete(record.id)}>
-          <Button>Delete</Button>
+          <Button>删除</Button>
         </Popconfirm>
 
       );
