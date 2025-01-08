@@ -5,7 +5,7 @@ import styles from './IndexPage.css';
 function IndexPage() {
   return (
     <div className={styles.normal}>
-      <h1 className={styles.title}>Yay! Welcome to dva2222!</h1>
+      <h1 className={styles.title}>Yay! Welcome to dva!</h1>
       <div className={styles.welcome} />
       <ul className={styles.list}>
         <li>To get started, edit22222 <code>src/index.js</code> and save to reload.</li>
