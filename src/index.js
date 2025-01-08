@@ -8,13 +8,14 @@ const app = dva({
   history: createBrowserHistory(),
 
   initialState: {
-    products: name//就是在这里卡了很久没加索引,改变就存
+    products: name
   },
   onError(e, dispatch){
     console.log(e.message);
   },
   onStateChange(state) {
-     localStorage.setItem('products',JSON.stringify(state.products));//改变就存
+     localStorage.setItem('products',JSON.stringify(state.products));
+
 
   }
 });

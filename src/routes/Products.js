@@ -1,39 +1,64 @@
 import React,{ useState } from 'react';
 import { connect} from 'dva';
 import ProductList from '../components/ProductList';
-import {Button} from "antd";
-import _Modal from "../components/Modal"
+import {Button,Modal,Input} from "antd";
+
+
+
 
 const Products = ({ dispatch, products }) => {
-  const [IsClick, setIsClick] = useState(false);
   function handleDelete(id) {
     dispatch({
       type: 'products/delete',
       payload: id,
     });
   }
-  function  show(num){
-    setIsClick(true);
-  }
-  function  handleShow(num){
-    setIsClick(num);
+  function handleAdd(content) {
+    dispatch({
+      type: 'products/add',
+      payload: content,
+    });
+    dispatch({
+      type: 'products/query',
+      payload: content,
+    });
   }
 
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [content, setContent] = useState('');
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const inputChange=(event)=>{
+   // console.log(event.target.value);
+    //把表单输入的值赋值给username
+    setContent(event.target.value);
+  }
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    handleAdd(content);
+
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <div>
-      <h2>数据列表</h2>
-      <Button onClick={show}>添加数据</Button>
-     {/* <Modal title="添加数据" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <h2>List of Products</h2>
+      <Button onClick={showModal}>添加数据</Button>
+      <Modal title="添加数据" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <p><Input placeholder="输入添加内容"  onChange={inputChange} /></p>
-      </Modal>*/}
-      <_Modal visible={IsClick} handleShow={handleShow} action={dispatch}   title="请填写数据"/>
-      <ProductList onDelete={handleDelete} products={products} action={dispatch} />
+      </Modal>
+      <ProductList onDelete={handleDelete} products={products} />
     </div>
   );
 };
 
 // export default Products;
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
   products: state.products,
   };
